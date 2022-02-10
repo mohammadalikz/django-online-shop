@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}{{ category.title }}{% endblock %}
+{% block content %}
+    <h3>{{ category.title }}</h3>
+    {% for product in category.products.all %}
+        <a href="{% url 'shop:product_detail' product.slug %}">{{ product.name }}</a>
+    <img src="{{ product.image.url }}" alt="" width="400px" height="400px">
+        <hr>
+    {% endfor %}
+{% endblock %}

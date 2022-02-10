@@ -39,6 +39,10 @@ INSTALLED_APPS = [
 
     # second apps
     'accounts.apps.AccountsConfig',
+    'shop.apps.ShopConfig',
+
+    # third apps
+    'sorl.thumbnail'
 ]
 
 MIDDLEWARE = [

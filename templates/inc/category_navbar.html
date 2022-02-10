@@ -1,0 +1,33 @@
+<div class="collapse navbar-collapse nav" id="navbarResponsive">
+    <ul>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'shop:home' %}">Home</a>
+        </li>
+        {% for cat in categories %}
+            {% if cat.parent == None %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'shop:category_detail' cat.slug %}">{{ cat.slug }}</a>
+                    {% if cat.children.active %}
+                        {% include 'inc/category_loop.html' %}
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <ul>
+            <li class="nav-item" >
+                <a class="nav-link"  href="{% url 'accounts:profile' %}">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="{% url 'accounts:logout' %}">Logout</a>
+            </li>
+            {% if not user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link"  href="{% url 'accounts:login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="{% url 'accounts:register' %}">Register</a>
+            </li>
+        {% endif %}
+    </ul>
+</div>

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>{{ product.name }}</h3>
+    {% for cat in product.category.all %}
+        <a href="{% url 'shop:category_detail' cat.slug %}">{{ cat.title}}</a>
+    {% endfor %}
+    <hr>
+    <small>{{ product.created }}</small><p>{{ product.price }} Toman</p><br/>
+    <img src="{{ product.image.url }}" alt="" width="400px" height="400px">
+    <p>{{ product.description }}</p><br/><br/>
+{% endblock %}

@@ -1,4 +1,6 @@
 asgiref==3.5.0
 Django==4.0.2
+Pillow==9.0.1
 python-decouple==3.5
+sorl-thumbnail==12.7.0
 sqlparse==0.4.2
