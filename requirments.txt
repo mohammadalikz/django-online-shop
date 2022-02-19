@@ -4,3 +4,4 @@ Pillow==9.0.1
 python-decouple==3.5
 sorl-thumbnail==12.7.0
 sqlparse==0.4.2
+suds==1.0.0

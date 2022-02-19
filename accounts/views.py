@@ -14,15 +14,16 @@ def home(request):
     return redirect('accounts:login')
 
 
-class Login(LoginRedirectMixin, LoginView):
+class Login(LoginView):
     template_name = 'accounts/login.html'
-
+    redirect_authenticated_user = 'accounts:profile'
     def get_success_url(self):
         return reverse_lazy('accounts:profile')
 
     def form_valid(self, form):
         messages.success(self.request, 'you successfully login')
         return super().form_valid(form)
+
 
 
 class Logout(LogoutView):
@@ -51,6 +52,4 @@ class Register(LoginRedirectMixin, CreateView):
     template_name = 'accounts/register.html'
     success_url = reverse_lazy('accounts:login')
 
-    def form_valid(self, form):
-        messages.success(self.request, 'you successfully registered')
-        return super().form_valid(form)
+

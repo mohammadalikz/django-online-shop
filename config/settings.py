@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # second apps
     'accounts.apps.AccountsConfig',
     'shop.apps.ShopConfig',
+    'orders.apps.OrdersConfig',
+    'cart.apps.CartConfig',
 
     # third apps
     'sorl.thumbnail'

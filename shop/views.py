@@ -1,6 +1,8 @@
 from django.views.generic import ListView, DetailView
-from .models import *
 
+from cart.form import CartAddForm
+from .models import *
+from django.views.generic.edit import FormMixin
 
 # Create your views here.
 
@@ -23,11 +25,16 @@ class CategoryDetail(DetailView):
         return Category.objects.filter(slug=slug)
 
 
-class ProductDetail(DetailView):
+class ProductDetail(FormMixin, DetailView):
     model = Product
     context_object_name = 'product'
     template_name = 'shop/product_detail.html'
+    form_class = CartAddForm
 
     def get_queryset(self):
         slug = self.kwargs['slug']
         return Product.objects.filter(slug=slug)
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
