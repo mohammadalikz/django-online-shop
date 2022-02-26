@@ -4,6 +4,8 @@ from shop.models import Product
 from .cart import Cart
 from .form import CartAddForm
 from django.views.generic.edit import DeleteView
+
+
 class Detail(View):
     def get(self, request, *args, **kwargs):
         cart = Cart(request)
@@ -20,8 +22,13 @@ class CartAdd(View):
             cart.add(product=product, quantity=cd['quantity'])
         return redirect('cart:detail')
 
-def cart_remove(request, product_id):
-	cart = Cart(request)
-	product = get_object_or_404(Product, id=product_id)
-	cart.remove(product)
-	return redirect('cart:detail')
+
+class CartRemove(View):
+    def dispatch(self, request, *args, **kwargs):
+        if request.method == 'GET':
+            cart = Cart(request)
+            product = get_object_or_404(Product, id=kwargs['product_id'])
+            cart.remove(product)
+            return redirect('cart:detail')
+        else:
+            return super().dispatch(request, *args, **kwargs)
