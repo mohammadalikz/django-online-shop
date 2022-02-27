@@ -50,8 +50,6 @@ def payment(request, order_id, price):
     global amount, o_id
     amount = price
     o_id = order_id
-    user = request.user
-    order_id = user.
     result = client.service.PaymentRequest(MERCHANT, amount, description, request.user.email, mobile, CallbackURL)
     if result.Status == 100:
         return redirect('https://www.zarinpal.com/pg/StartPay/' + str(result.Authority))
